@@ -1,0 +1,57 @@
+<%= form_for @good, :html => {:multipart => true, :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :size, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :size, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :color, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :color, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :price, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :price, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :stock_price, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :stock_price, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :image, :class => 'control-label' %>
+    <div class="controls">
+      <%= @good.image? ? image_tag(@good.image.url(:thumb)) : "" %>
+      <%= f.file_field :image, :class => 'file_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label "Brand", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select(:brand_id, options_from_collection_for_select(Brand.all, :id, :name, @good.brand_id)) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label "Category", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select(:category_id, options_from_collection_for_select(Category.all, :id, :name, @good.category_id)) %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                goods_path, :class => 'btn' %>
+  </div>
+<% end %>

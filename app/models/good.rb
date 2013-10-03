@@ -4,5 +4,8 @@ class Good < ActiveRecord::Base
 
   attr_accessible :color, :price, :size, :stock_price, :title, :image, :category_id, :brand_id
 
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  has_attached_file :image, 
+  	:styles => { :medium => "300x300>", :thumb => "100x100>" },
+  	:path 	=> "public/system/:class/:id/:style_:filename",
+    :url  	=> "/system/:class/:id/:style_:basename.:extension"
 end
